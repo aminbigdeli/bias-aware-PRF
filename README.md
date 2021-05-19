@@ -44,7 +44,7 @@ We selected the interpolation coefficient (\lambda) from \[0, 1\] with 0.1 incer
 </thead>
 <tbody>
   <tr>
-    <td class="tg-7btt"><span style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent"><b>BM25 <a href="https://github.com/biasawareprf/bias-aware-PRF/tree/main/results/runs/BM25" target="_top"> (Run) </a></span></td>
+    <td class="tg-7btt"><span style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent"><b>BM25 <a href="https://github.com/aminbigdeli/bias-aware-PRF/tree/main/results/runs/BM25" target="_top"> (Run) </a></span></td>
     <td class="tg-8r26"><span style="font-weight:400;font-style:normal;text-decoration:none;color:#000;background-color:transparent">0.61</span></td>
     <td class="tg-8r26"><span style="font-weight:400;font-style:normal;text-decoration:none;color:#000;background-color:transparent">0.35</span></td>
     <td class="tg-8r26"><span style="font-weight:400;font-style:normal;text-decoration:none;color:#000;background-color:transparent">0.48</span></td>
@@ -59,7 +59,7 @@ We selected the interpolation coefficient (\lambda) from \[0, 1\] with 0.1 incer
     <td class="tg-c3ow"><span style="font-weight:400;font-style:normal;text-decoration:none;color:#000;background-color:transparent">0.19</span></td>
   </tr>
   <tr>
-    <td class="tg-7btt"><span style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent"><b>PRF <a href="https://github.com/biasawareprf/bias-aware-PRF/tree/main/results/runs/PRF" target="_top"> (Run) </a></span></td>
+    <td class="tg-7btt"><span style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent"><b>PRF <a href="https://github.com/aminbigdeli/bias-aware-PRF/tree/main/results/runs/PRF" target="_top"> (Run) </a></span></td>
     <td class="tg-8r26"><span style="font-weight:400;font-style:normal;text-decoration:none;color:#000;background-color:transparent">0.61</span></td>
     <td class="tg-8r26"><span style="font-weight:400;font-style:normal;text-decoration:none;color:#000;background-color:transparent">0.34</span></td>
     <td class="tg-8r26"><span style="font-weight:400;font-style:normal;text-decoration:none;color:#000;background-color:transparent">0.45</span></td>
@@ -74,7 +74,7 @@ We selected the interpolation coefficient (\lambda) from \[0, 1\] with 0.1 incer
     <td class="tg-c3ow"><span style="font-weight:400;font-style:normal;text-decoration:none;color:#000;background-color:transparent">0.2</span></td>
   </tr>
   <tr>
-    <td class="tg-7btt"><span style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent"><b>Our Approach <a href="https://github.com/biasawareprf/bias-aware-PRF/tree/main/results/runs/Bias-aware%20PRF" target="_top"> (Run) </a></span></td>
+    <td class="tg-7btt"><span style="font-weight:700;font-style:normal;text-decoration:none;color:#000;background-color:transparent"><b>Our Approach <a href="https://github.com/aminbigdeli/bias-aware-PRF/tree/main/results/runs/Bias-aware%20PRF" target="_top"> (Run) </a></span></td>
     <td class="tg-8r26"><span style="font-weight:400;font-style:normal;text-decoration:none;color:#000;background-color:transparent">0.43</span></td>
     <td class="tg-8r26"><span style="font-weight:400;font-style:normal;text-decoration:none;color:#000;background-color:transparent">0.27</span></td>
     <td class="tg-8r26"><span style="font-weight:400;font-style:normal;text-decoration:none;color:#000;background-color:transparent">0.34</span></td>
@@ -117,7 +117,7 @@ We selected the interpolation coefficient (\lambda) from \[0, 1\] with 0.1 incer
 
 2. Use `interpolation.py` script to interpolate the retrieval score (given by BM25) with the bias score of each document to re-rank the documents. (In our experiments, we have selected lambda in range of [0,1] with 0.1 increment.)
 
-3. Use [anserini](https://github.com/castorini/anserini) toolkit to perform pseudo relevance feedback and expand the queries based on the top 10 documents of each query. In order to have a less biased expansion, we added a function called customised_RM3 in the SimpleSearcher class of anserini to expand each query based on the given initial query and the re-ranked list of documents that are less biased in comparison with the original run. The changes are made in the SimpleSearcher and RM3ReRanker classes of anserini that is forked into [this repository](https://github.com/biasawareprf/anserini). Finally, the searcher returns a list of retrieved documents based on the expanded queries which can be found [here](https://github.com/biasawareprf/bias-aware-PRF/tree/main/results/runs/Bias-aware%20PRF).
+3. Use [anserini](https://github.com/castorini/anserini) toolkit to perform pseudo relevance feedback and expand the queries based on the top 10 documents of each query. In order to have a less biased expansion, we added a function called customised_RM3 in the SimpleSearcher class of anserini to expand each query based on the given initial query and the re-ranked list of documents that are less biased in comparison with the original run. The changes are made in the SimpleSearcher and RM3ReRanker classes of anserini that is forked into [this repository](https://github.com/biasawareprf/anserini). Finally, the searcher returns a list of retrieved documents based on the expanded queries which can be found [here](https://github.com/aminbigdeli/bias-aware-PRF/tree/main/results/runs/Bias-aware%20PRF).
 
 ##### In order to evaluate the bias-aware expanded queries and calculate the level of gender biases inside the retirieved documents of each run file:
 
@@ -125,5 +125,5 @@ We selected the interpolation coefficient (\lambda) from \[0, 1\] with 0.1 incer
 ```
 tools/eval/trec_eval.9.0.4/trec_eval -m map -m P.30 results/queries/Original Queries/RB04/RB04_qrels.txt /results/runs/Bias-aware PRF/RB04/retrieved_list_unbiased_lambda_0.5.txt
 ```
-2. You may use `runs_calculate_bias.py` and `retrieved_list_calculate_bias.py` scripts for calculating the TF ARab and TF Boolean metrics introduced in [Do Neural Ranking Models Intensify Gender Bias?](https://github.com/navid-rekabsaz/GenderBias_IR) . In addition, the codes for one other metric namely, LIWC are included inside [src/LIWC](https://github.com/biasawareprf/bias-aware-PRF/tree/main/src/LIWC) directory. The LIWC lexicon is proprietary, so it is not included in this repository. The lexicon data can be purchased from [liwc.net](http://liwc.wpengine.com/).
+2. You may use `runs_calculate_bias.py` and `retrieved_list_calculate_bias.py` scripts for calculating the TF ARab and TF Boolean metrics introduced in [Do Neural Ranking Models Intensify Gender Bias?](https://github.com/navid-rekabsaz/GenderBias_IR) . In addition, the codes for one other metric namely, LIWC are included inside [src/LIWC](https://github.com/aminbigdeli/bias-aware-PRF/tree/main/src/LIWC) directory. The LIWC lexicon is proprietary, so it is not included in this repository. The lexicon data can be purchased from [liwc.net](http://liwc.wpengine.com/).
 
